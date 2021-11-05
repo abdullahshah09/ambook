@@ -34,7 +34,7 @@ render(){
 return(
 <Router >
 <div>
-<Route path="/page2" component={header} />
+<Route path="/page3" component={header} />
 {/* <Route path="/Page1" component={Page1} /> */}
 {/* <Route path="/Page2" component={Page2} /> */}
 {/* <Route path="/Page3" component={Page3} /> */}
