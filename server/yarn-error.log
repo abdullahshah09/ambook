@@ -1,0 +1,49 @@
+Arguments: 
+  D:\environment\nodejs\node.exe C:\Users\53424\scoop\apps\yarn\current\Yarn\bin\yarn.js add nodemon--save--dev
+
+PATH: 
+  C:\Program Files\Haskell\bin;D:\Haskell Platform\8.6.5\lib\extralibs\bin;D:\Haskell Platform\8.6.5\bin;D:\environment\redis\;D:\TortoiseSVN\bin;D:\Git\cmd;D:\environment\nodejs\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\ProgramData\chocolatey\bin;D:\swipl\bin;D:\Haskell Platform\8.6.5\mingw\bin;C:\Users\53424\AppData\Roaming\cabal\bin;D:\environment\stack\bin;C:\Users\53424\scoop\apps\yarn\current\global\node_modules\.bin;C:\Users\53424\scoop\apps\yarn\current\Yarn\bin;C:\Users\53424\scoop\apps\nodejs\current\bin;C:\Users\53424\scoop\apps\nodejs\current;C:\Users\53424\scoop\shims;C:\Users\53424\AppData\Local\Microsoft\WindowsApps;D:\jdk1.8\bin;D:\apache-maven-3.5.0\bin;D:\mysql-5.7.15-winx64\bin;D:\Microsoft VS Code\bin;D:\environment\nodejs;C:\tools\ghc-9.0.1\bin;C:\tools\msys64
+
+Yarn version: 
+  1.22.15
+
+Node version: 
+  12.14.0
+
+Platform: 
+  win32 x64
+
+Trace: 
+  Error: https://registry.yarnpkg.com/nodemon--save--dev: Not found
+      at Request.params.callback [as _callback] (C:\Users\53424\scoop\apps\yarn\1.22.15\Yarn\lib\cli.js:66140:18)
+      at Request.self.callback (C:\Users\53424\scoop\apps\yarn\1.22.15\Yarn\lib\cli.js:140885:22)
+      at Request.emit (events.js:210:5)
+      at Request.<anonymous> (C:\Users\53424\scoop\apps\yarn\1.22.15\Yarn\lib\cli.js:141857:10)
+      at Request.emit (events.js:210:5)
+      at IncomingMessage.<anonymous> (C:\Users\53424\scoop\apps\yarn\1.22.15\Yarn\lib\cli.js:141779:12)
+      at Object.onceWrapper (events.js:299:28)
+      at IncomingMessage.emit (events.js:215:7)
+      at endReadableNT (_stream_readable.js:1184:12)
+      at processTicksAndRejections (internal/process/task_queues.js:80:21)
+
+npm manifest: 
+  {
+    "name": "server",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "minghui",
+    "license": "ISC",
+    "dependencies": {
+      "express": "^4.17.1"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
