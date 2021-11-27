@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import './login.css'
+import cookie from "react-cookies"
 
 function Login() {
     const [email,setEmail] = useState('')
@@ -25,18 +26,28 @@ function Login() {
 
         const data = await response.json()
 
-        alert(data.msg)
-        if(response.status == 200) {
+        
+        if(response.status === 200) {
+            cookie.save('token', data.data.token)
+            // window.location.href = '/home'
+            return fetch('http://localhost:8888/api/profile',{
+                method:'POST',
+                headers:{
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + cookie.load('token')
+                }
+            }).then(window.location.href = '/home')
             
-            window.location.href = '/home'
+        } else {
+            alert(data.msg)
         }
     }
 
     return(
         <div>
-            <div class="relative min-h-screen flex">
+            <div className="relative min-h-screen flex">
             <div
-                class="
+                className="
                     flex flex-col
                     sm:flex-row
                     items-center
@@ -49,7 +60,7 @@ function Login() {
                 "
             >
                 <div
-                    class="
+                    className="
                         sm:w-1/2
                         xl:w-3/5
                         h-full
@@ -67,7 +78,7 @@ function Login() {
                     "
                 >
                     <div
-                        class="
+                        className="
                             absolute
                             bg-gradient-to-b
                             from-indigo-600
@@ -77,11 +88,11 @@ function Login() {
                             z-0
                         "
                     ></div>
-                    <div class="w-full max-w-lg z-10">
-                        <div class="sm:text-4xl xl:text-5xl font-bold leading-tight mb-6"
+                    <div className="w-full max-w-lg z-10">
+                        <div className="sm:text-4xl xl:text-5xl font-bold leading-tight mb-6"
                             >Welcome to Ambook</div>
                     </div>
-                    <ul class="circles">
+                    <ul className="circles">
                         <li></li>
                         <li></li>
                         <li></li>
@@ -95,7 +106,7 @@ function Login() {
                     </ul>
                 </div>
                 <div
-                    class="
+                    className="
                         md:flex md:items-center md:justify-center
                         w-full
                         sm:w-auto
@@ -110,21 +121,21 @@ function Login() {
                         bg-white
                     "
                 >
-                    <div class="max-w-md w-full mx-auto space-y-8">
-                        <div class="text-center">
-                            <h2 class="mt-6 text-3xl font-bold text-gray-900">Welcome back </h2>
+                    <div className="max-w-md w-full mx-auto space-y-8">
+                        <div className="text-center">
+                            <h2 className="mt-6 text-3xl font-bold text-gray-900">Welcome back </h2>
                         </div>
-                        <div class="flex items-center justify-center space-x-2">
-                            <span class="h-px w-16 bg-gray-200"></span>
-                            <span class="text-gray-300 font-normal">Log in by using email</span>
-                            <span class="h-px w-16 bg-gray-200"></span>
+                        <div className="flex items-center justify-center space-x-2">
+                            <span className="h-px w-16 bg-gray-200"></span>
+                            <span className="text-gray-300 font-normal">Log in by using email</span>
+                            <span className="h-px w-16 bg-gray-200"></span>
                         </div>
-                        <form class="mt-8 space-y-6"  onSubmit={loginUser}>
-                            <div class="relative">
-                                <label class="ml-3 text-sm font-bold text-gray-700 tracking-wide"
+                        <form className="mt-8 space-y-6"  onSubmit={loginUser}>
+                            <div className="relative">
+                                <label className="ml-3 text-sm font-bold text-gray-700 tracking-wide"
                                     >Email</label>
                                 <input
-                                    class="
+                                    className="
                                         w-full
                                         text-base
                                         px-4
@@ -138,13 +149,14 @@ function Login() {
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
                                     placeholder="Please enter email"
+                                    required="required"
                                 />
                             </div>
-                            <div class="mt-8 content-center">
-                                <label class="ml-3 text-sm font-bold text-gray-700 tracking-wide"
+                            <div className="mt-8 content-center">
+                                <label className="ml-3 text-sm font-bold text-gray-700 tracking-wide"
                                     >Password</label>
                                 <input
-                                    class="
+                                    className="
                                         w-full
                                         content-center
                                         text-base
@@ -159,12 +171,13 @@ function Login() {
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
                                     placeholder="Enter the password"
+                                    required="required"
                                 />
                             </div>
                             <div>
                                 <button
                                     type="submit"
-                                    class="
+                                    className="
                                         w-full
                                         flex
                                         justify-center
@@ -188,7 +201,7 @@ function Login() {
                                     >Log in</button>
                             </div>
                             <p
-                                class="
+                                className="
                                     items-center
                                     justify-center
                                     mt-10
@@ -196,53 +209,22 @@ function Login() {
                                 "
                             >
                                 <span>No account?</span>
-                                <a
-                                    href="#"
-                                    target="_blank"
-                                    class="
-                                        text-indigo-400
-                                        hover:text-blue-500
-                                        no-underline
-                                        hover:underline
-                                        cursor-pointer
-                                        transition
-                                        ease-in
-                                        duration-300
-                                    "
-                                    ><button onClick={toRegister}>    Register now</button></a
-                                >
+                                <button onClick={toRegister} className="
+                                    text-indigo-400
+                                    hover:text-blue-500
+                                    no-underline
+                                    hover:underline
+                                    cursor-pointer
+                                    transition
+                                    ease-in
+                                    duration-300
+                                ">    Register now</button>
                             </p>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
-
-
-
-
-
-
-
-            {/* <h1>Login</h1>
-            <form onSubmit={loginUser}>
-                <input 
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                type="text" 
-                placeholder="Email"
-                />
-                <br/>
-                <input 
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                type="password" 
-                placeholder="Password"
-                />
-                <br/>
-                <input type="submit" value="Login"/>
-                <input type="button" class= "w-10 h-10 bg-green-400 text-black text-sm"  onClick={toRegister} value="Register" />
-            </form> */}
         </div>
     )
 }
