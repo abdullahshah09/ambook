@@ -2,6 +2,7 @@ const express = require('express')
 const cors = require('cors')
 const mongoose = require('mongoose')
 const User = require('./models/user.model')
+const Profile = require('./models/profile.model')
 const jwt = require('jsonwebtoken')
 const app = express()
 const SECRET = 'secret1'
@@ -78,11 +79,61 @@ const auth = async (req,res,next) => {
     next() 
 }
 
-app.post('/api/profile', auth, async (req,res) => {
+app.post('/api/getUser', auth, async (req,res) => {
     res.status(200).send({
-        msg: 'get profile successful',
+        msg: 'get user successful',
         data: req.user
     })
+})
+
+app.post('/api/profile', async (req,res) => {
+    const profile = await Profile.findOne({
+        user: req.body.user,
+    })
+
+    res.status(200).send({
+        msg: 'get profile successful',
+        data: profile
+    })
+})
+
+app.post('/api/updateProfile', async (req,res) => {
+    const profile = await Profile.findOne({
+        user: req.body.user,
+    })
+
+    if(!profile) {
+        try {
+            await Profile.create({
+                user: req.body.user,
+                description: req.body.description,
+                company: req.body.company,
+                location: req.body.location,
+                school: req.body.school,
+            })
+            return res.status(200).send({
+                msg: 'Update profile successful '
+            }) 
+            
+        } catch (error) {
+            console.log(error)
+            return res.status(400).send({
+                msg: ''
+            })
+        }
+    } else {
+        await Profile.updateOne({
+                description: req.body.description,
+                company: req.body.company,
+                location: req.body.location,
+                school: req.body.school,
+        })
+
+        return res.status(200).send({
+            msg: 'Update profile successful '
+        }) 
+    }
+    
 })
 
 app.listen(8888);

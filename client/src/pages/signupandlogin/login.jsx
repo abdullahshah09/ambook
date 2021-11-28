@@ -28,16 +28,10 @@ function Login() {
 
         
         if(response.status === 200) {
+            console.log(data.data)
             cookie.save('token', data.data.token)
-            // window.location.href = '/home'
-            return fetch('http://localhost:8888/api/profile',{
-                method:'POST',
-                headers:{
-                    'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + cookie.load('token')
-                }
-            }).then(window.location.href = '/home')
-            
+            cookie.save('userId',data.data.user._id)
+            window.location.href = '/home'
         } else {
             alert(data.msg)
         }

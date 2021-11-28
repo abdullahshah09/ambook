@@ -21,7 +21,7 @@ function HeaderRight(params) {
 				<ul className="list-reset flex justify-between flex-1 md:flex-none items-center">
 				  <li className="mr-3">
                       <image className="userPhoto"></image>
-					<a className="inline-block py-2 px-4 text-grey-darkest no-underline" href="#">{params.user.name}</a>
+					<a className="inline-block py-2 px-4 text-grey-darkest no-underline" href="/home/profile">{params.user.name}</a>
 				  </li>
 				  <li className="mr-3">
 					<a className="inline-block text-gray-600 no-underline hover:text-gray-400 hover:text-underline py-2 px-4" href="#">link</a>
@@ -48,7 +48,7 @@ class header extends React.Component {
 
   componentDidMount () {
     
-    fetch('http://localhost:8888/api/profile',{
+    fetch('http://localhost:8888/api/getUser',{
       method:'POST',
       headers:{
         'Content-Type': 'application/json',
@@ -68,7 +68,7 @@ class header extends React.Component {
 
         return (
           
-            <div className="p-4 pb-0 border-b shadow-lg bg-gray-100 md:flex md:items-center md:justify-between md:pb-4">
+            <div className="p-4 pb-0 border-b shadow-lg bg-blue-500 md:flex md:items-center md:justify-between md:pb-4">
                 <HeaderLeft></HeaderLeft>
                 
                 <HeaderRight user={this.state.user}></HeaderRight>
